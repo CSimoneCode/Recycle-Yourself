@@ -10,8 +10,18 @@ def landing(request):
 def about(request):
     return render(request, 'about.html')
 
-# --- USER PAGES
+# --- PROFILE PAGES
+def showProfile(request):
+    return HttpResponse('<h1>It Works!!!<h1>')
+
+def profileIndex(request):
+    return HttpResponse('<h1>It Works!!!<h1>')
+
+def addProfile(request):
+    return HttpResponse('<h1>It Works!!!<h1>')
 
 # --- POST PAGES
 
 # --- AUTH 
+def signup(request):
+    return HttpResponse('<h1>It Works!!!<h1>')
