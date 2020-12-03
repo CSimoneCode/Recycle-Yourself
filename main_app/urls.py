@@ -12,6 +12,7 @@ urlpatterns = [
     path('profile/index/', views.profileIndex, name='profileIndex'),
     path('profile/addProfile/', views.addProfile, name='addProfile'),
     path('profile/<int:user_id>/', views.showProfile, name='showProfile'),
+    path('profile/<int:user_id>/edit', views.editProfile, name='editProfile'),
     # --- POST
 
     # --- AUTH

@@ -22,5 +22,5 @@ class SignupForm(UserCreationForm):
     email = forms.EmailField(max_length=240)
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']        
+        fields = ['username', 'email', 'password1', 'password2']
     

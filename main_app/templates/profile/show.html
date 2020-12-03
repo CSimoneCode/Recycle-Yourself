@@ -8,7 +8,8 @@
     <p>Location: {{ profile.location }}</p>
     <p>Bio: {{ profile.bio }}</p>
     <p>Account Type: {{ profile.account_type }}</p>
+    <button href="{% url 'editProfile' %}">Edit Profile</button>
 </div>
 
-{% endblock %}      
+{% endblock %}
     
