@@ -63,23 +63,23 @@ def addProfile(request):
         }
         return render(request, 'profile/add.html', context)
 
-@login_required
-def editProfile(request):
-    error_message = ''
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid():
-            edited_profile = profile_form.save()
-            return redirect('showProfile')
-        else:
-            error_message = 'Something went wrong - try again'
-    else:
-        profile_form = ProfileForm(instance=request.user.profile)
-        context = {
-            'profile_form': profile_form, 
-            'error_message': error_message
-        }
-        return render(request, 'profile/edit.html', context)
+# @login_required
+# def editProfile(request):
+#     error_message = ''
+#     if request.method == 'POST':
+#         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+#         if profile_form.is_valid():
+#             edited_profile = profile_form.save()
+#             return redirect('showProfile')
+#         else:
+#             error_message = 'Something went wrong - try again'
+#     else:
+#         profile_form = ProfileForm(instance=request.user.profile)
+#         context = {
+#             'profile_form': profile_form, 
+#             'error_message': error_message
+#         }
+#         return render(request, 'profile/edit.html', context)
 
 
 @login_required

@@ -24,3 +24,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.User.username
+
+class Post(models.Model):
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    body = models.CharField(max_length=500)
+    date = models.DateField(blank=True)
+    photo = models.ImageField(default='default.jpg', upload_to='post_pics', blank=True)
+    public = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
