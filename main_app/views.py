@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from .forms import ProfileForm, SignupForm
+from django.http import HttpResponse
 
 # return HttpResponse('<h1>It works!<h1>')
 
@@ -14,6 +15,14 @@ def landing(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+def donorInfo(request):
+    return HttpResponse('<h1>It works!<h1>')
+
+
+def recipientInfo(request):
+    return HttpResponse('<h1>It works!<h1>')
 
 
 # --- PROFILE PAGES
@@ -61,7 +70,7 @@ def editProfile(request):
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
             edited_profile = profile_form.save()
-            return redirect('showProfile', request.user_id)
+            return redirect('showProfile')
         else:
             error_message = 'Something went wrong - try again'
     else:
@@ -71,6 +80,17 @@ def editProfile(request):
             'error_message': error_message
         }
         return render(request, 'profile/edit.html', context)
+
+
+@login_required
+def deleteProfile(request):
+    error_message = ''
+    if request.method == 'POST':
+        Profile.objects.get(id=request.user.profile.id).delete()
+        return redirect('landing')
+    else:
+        error_message = 'Something went wrong - try again'
+        return redirect('showProfile')
 
 # --- POST PAGES
 

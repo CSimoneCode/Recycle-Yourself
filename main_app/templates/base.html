@@ -1,17 +1,25 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <title>Recycle Yourself {% block title %}{% endblock %}</title>
 </head>
 <body>
     <header>
         <nav>
-            <li><a href="{% url 'landing' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'login' %}">Log In</a></li>
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <a class="navlinks" href="{% url 'landing' %}">Home</a>
+            <a class="navlinks" href="{% url 'about' %}">About</a>
+            <a class="navlinks" href="{% url 'donorInfo' %}">Donor Info</a>
+            <a class="navlinks" href="{% url 'recipientInfo' %}">Recipient Info</a>
+            {% if user.is_authenticated %}
+            <a class="navlinks" href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+            <a class="navlinks" href="{% url 'login' %}">Log In</a>
+            <a class="navlinks" href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
         </nav>
     </header>
     <main>
