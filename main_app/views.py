@@ -21,7 +21,7 @@ def about(request):
 
 def donorInfo(request):
     profile = Profile.objects.filter(account_type='DN')
-    posts = Post.objects.select_related().filter(author__in=profile)
+    posts = Post.objects.select_related().filter(author__in=profile, public=True)
     context = { 'posts': posts }
     return render(request, 'donorInfo.html', context)
 
