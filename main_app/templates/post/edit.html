@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Edit Post{% endblock %}
+
+{% block content %}
+
+<h1>Edit Post</h1>
+
+<div class="form-cont">
+    <form method="post" action="{% url 'editPost' %}">
+        {% csrf_token %}
+        <table>{{ post_form.as_table }}</table>
+        <input type="submit" class="btn" value="Create Post">
+    </form>
+</div> 
+
+{% endblock %}
+    

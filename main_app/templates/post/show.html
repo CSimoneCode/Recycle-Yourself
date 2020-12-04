@@ -9,6 +9,9 @@
     </div>
     <p>By {{ post.author }} | {{ post.date }}</p>
     <p>{{ post.body }}</p>
+    {% if post.author == request.user %}
+    <button class="btn" href="{% url 'editPost' %}">Edit Post</button>
+    {% endif %}
 </div>
 
 {% endblock %}  

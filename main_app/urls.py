@@ -18,6 +18,7 @@ urlpatterns = [
     # ----- POST
     path('post/add/', views.addPost, name='addPost'),
     path('post/<int:post_id>/', views.showPost, name='showPost'),
+    path('post/<int:post_id>/edit', views.editPost, name='editPost'),
 
     # ----- AUTH
     path('registration/signup/', views.signup, name='signup')

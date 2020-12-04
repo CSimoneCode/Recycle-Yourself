@@ -151,8 +151,20 @@ def addPost(request):
 
 
 @login_required
-def editPost(request):
-    return HttpResponse('<h1>It works!<h1>')
+def editPost(request, post_id):
+    found_post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+    post_form = PostForm(request.POST, instance=found_post)
+    if post_form.is_valid():
+        updated_post = post_form.save()
+        return redirect('showPost', updated_post.id)
+else:
+    post_form = PostForm(instance=found_post)
+    context = {
+        'post': found_post,
+        'post_form': post_form
+    }
+    return render(request, 'post/edit.html', context)
 
 
 @login_required
