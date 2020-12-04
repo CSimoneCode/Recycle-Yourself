@@ -5,17 +5,26 @@
 header {
     display: flex;
     flex-wrap: wrap;
+    width: 100vw;
     background-color: #134A2D;
     color: #CBEAA6;
     padding: 4px;
 }
 
-nav {
+.nav-left {
     font-size: 22px;
-    width: 100vw;
+    color: #94386E;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+}
+
+.nav-right {
+    font-size: 22px;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
 }
 
 nav a {
