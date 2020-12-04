@@ -11,20 +11,29 @@ header {
     padding: 4px;
 }
 
-.nav-left {
-    font-size: 22px;
-    color: #94386E;
+nav {
+    width: 100vw;
     display: flex;
-    justify-content: flex-start;
+    margin: 0px;
+}
+
+.fa-recycle {
+    font-size: 2em;
+    color: #94386E;
+    background-color: #134A2D;
+    display: flex;
     align-items: center;
-    padding: 5px;
+    width: 50vw;
+    padding: 3px;
 }
 
 .nav-right {
-    font-size: 22px;
+    font-size: 1.5em;
+    width: 50vw;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin: 0px;
 }
 
 nav a {
