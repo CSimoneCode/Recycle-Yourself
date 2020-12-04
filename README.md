@@ -72,5 +72,5 @@ Potentially subject to change if stretch goals can be met.
 - [Coolers](Coolers.co) for color palette generator
 - [Flexiple](Flexiple.com) for illustrations
 - [FontAwesome](FontAwesome.com) & [OnlineWebFonts](onlinewebfonts.com) for icons
-- Default user icon courtesy of [Becris](https://creativemarket.com/Becris) at [Flaticon](https://www.flaticon.com/)       
+- Default user icon courtesy of [Becris](https://creativemarket.com/Becris) at - [Flaticon](https://www.flaticon.com/)
     

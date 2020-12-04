@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Profile
-from .forms import ProfileForm, SignupForm
+from .models import Profile, Post
+from .forms import ProfileForm, SignupForm, PostForm
 from django.http import HttpResponse
 
 # return HttpResponse('<h1>It works!<h1>')
@@ -18,11 +18,11 @@ def about(request):
 
 
 def donorInfo(request):
-    return HttpResponse('<h1>It works!<h1>')
+    return render(request, 'donorInfo.html')
 
 
 def recipientInfo(request):
-    return HttpResponse('<h1>It works!<h1>')
+    return render(request, 'recipientInfo.html')
 
 
 # --- PROFILE PAGES
@@ -47,7 +47,7 @@ def profileIndex(request):
 def addProfile(request):
     error_message = ''
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
         if profile_form.is_valid():
             new_profile = profile_form.save(commit=False)
             new_profile.user_id = request.user.id
@@ -90,9 +90,38 @@ def deleteProfile(request):
         return redirect('landing')
     else:
         error_message = 'Something went wrong - try again'
-        return redirect('showProfile')
+        return render(request, 'showProfile')
 
 # --- POST PAGES
+def showPost(request):
+    return HttpResponse('<h1>It works!<h1>')
+
+@login_required
+def addPost(request):
+    if request.method == 'POST':
+        post_form = PostForm(request.POST, request.FILES)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.author_id = request.user.id
+            new_post.save()
+            return redirect('showProfile', new_post.author_id)
+        else:
+            post_form = PostForm()
+            author = request.user
+            context = {
+                'post_form': post_form,
+                'author': author,
+            }
+            return render(request, 'post/add.html', context)
+
+@login_required
+def editPost(request):
+    return HttpResponse('<h1>It works!<h1>')
+
+@login_required
+def deletePost(request):
+    return HttpResponse('<h1>It works!<h1>')
+
 
 # --- AUTH 
 def signup(request):

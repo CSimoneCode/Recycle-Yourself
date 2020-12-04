@@ -15,6 +15,8 @@ urlpatterns = [
     path('profile/<int:user_id>/', views.showProfile, name='showProfile'),
     # path('profile/<int:user_id>/edit', views.editProfile, name='editProfile'),
     # ----- POST
+    path('post/add', views.addPost, name='addPost'),
+    path('post/<int:post_id>/', views.showPost, name='showPost'),
 
     # ----- AUTH
     path('registration/signup/', views.signup, name='signup')
