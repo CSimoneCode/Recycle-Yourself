@@ -19,7 +19,7 @@ I tracked my donation on Instagram and shared it, but it would have been nice to
 ## ERD & Wireframes:
 Potentially subject to change if stretch goals can be met.
 
-![ERD](https://i.imgur.com/WNEwWEe.png)
+![ERD](https://i.imgur.com/rETTlef.png)
 ![Landing Page](https://i.imgur.com/AkdalJI.png)
 ![Landing - Sign Up](https://i.imgur.com/rHr60rx.png)
 ![Landing - Log In](https://i.imgur.com/y72S8VD.png)
