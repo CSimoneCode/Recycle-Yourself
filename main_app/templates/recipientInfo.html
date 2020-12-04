@@ -5,10 +5,15 @@
 
 <h1>Potential Recipient Information</h1>
 <div class="recipient-posts">
-Posts
+    <h3>Posts</h3>
+    {% for post in posts %}
+    <ul>
+        <li><a href=" url 'showPost' {{ post.id }}">{{ post.title }} | {{ post.date }}</a></li>
+    </ul>
+    {% endfor %}
 </div>
 <div class="recipient-info">
-Information
+    <h3>Information</h3>
 </div>
 
 {% endblock %}

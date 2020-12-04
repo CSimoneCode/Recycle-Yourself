@@ -4,11 +4,16 @@
 {% block content %}
 
 <h1>Potential Donor Information</h1>
-<div class="recipient-posts">
-Posts
+<div class="donor-posts">
+    <h3>Posts</h3>
+    {% for post in posts %}
+    <ul>
+        <li><a href=" url 'showPost' {{ post.id }}">{{ post.title }} | {{ post.date }}</a></li>
+    </ul>
+    {% endfor %}
 </div>
-<div class="recipient-info">
-Information
+<div class="donor-info">
+    <h3>Information</h3>
 </div>
 
 {% endblock %}

@@ -20,11 +20,17 @@ def about(request):
 
 
 def donorInfo(request):
-    return render(request, 'donorInfo.html')
+    profile = Profile.objects.filter(account_type='DN')
+    posts = Post.objects.select_related().filter(author__in=profile)
+    context = { 'posts': posts }
+    return render(request, 'donorInfo.html', context)
 
 
 def recipientInfo(request):
-    return render(request, 'recipientInfo.html')
+    profile = Profile.objects.filter(account_type='RC')
+    posts = Post.objects.select_related().filter(author__in=profile)
+    context = { 'posts': posts }
+    return render(request, 'recipientInfo.html', context)
 
 
 #----------------------------------------------------------------------------------------------
@@ -67,23 +73,24 @@ def addProfile(request):
         }
         return render(request, 'profile/add.html', context)
 
-# @login_required
-# def editProfile(request):
-#     error_message = ''
-#     if request.method == 'POST':
-#         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-#         if profile_form.is_valid():
-#             edited_profile = profile_form.save()
-#             return redirect('showProfile')
-#         else:
-#             error_message = 'Something went wrong - try again'
-#     else:
-#         profile_form = ProfileForm(instance=request.user.profile)
-#         context = {
-#             'profile_form': profile_form, 
-#             'error_message': error_message
-#         }
-#         return render(request, 'profile/edit.html', context)
+
+@login_required
+def editProfile(request):
+    error_message = ''
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if profile_form.is_valid():
+            edited_profile = profile_form.save()
+            return redirect('showProfile')
+        else:
+            error_message = 'Something went wrong - try again'
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
+        context = {
+            'profile_form': profile_form, 
+            'error_message': error_message
+        }
+        return render(request, 'profile/edit.html', context)
 
 
 @login_required
@@ -102,7 +109,13 @@ def deleteProfile(request):
 #----------------------------------------------------------------------------------------------
 def showPost(request, post_id):
     post = Post.objects.get(id=post_id)
-    return render(request, 'post/show.html', post.id)
+
+    context = {
+    'post': post,
+    }
+
+    return render(request, 'post/show.html', context)
+
 
 @login_required
 def addPost(request):
@@ -110,9 +123,9 @@ def addPost(request):
         post_form = PostForm(request.POST, request.FILES)
         if post_form.is_valid():
             new_post = post_form.save(commit=False)
-            profile_user = request.user
+            new_post.author_id = request.user.id
             new_post.save()
-            return render(request, 'showPost', new_post.id)
+            return redirect('showPost', new_post.id)
     else:
         post_form = PostForm()
         author = request.user
@@ -122,9 +135,11 @@ def addPost(request):
         }
         return render(request, 'post/add.html', context)
 
+
 @login_required
 def editPost(request):
     return HttpResponse('<h1>It works!<h1>')
+
 
 @login_required
 def deletePost(request):

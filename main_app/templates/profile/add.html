@@ -10,7 +10,7 @@
 {% endif %}
 
 <div class="form-cont">
-    <form method="post" action="{% url 'addProfile' %}">
+    <form method="POST" action="{% url 'addProfile' %}">
         {% csrf_token %}
         {{ profile_form.as_p }}
         <input type="submit" class="btn" value="Add Profile">
