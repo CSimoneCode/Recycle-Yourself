@@ -2,16 +2,25 @@
     font-family: Tahoma, Verdana, sans-serif;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #3D0B37;
+    background-color: #CBEAA6;
+}
+
 header {
     display: flex;
     flex-wrap: wrap;
     width: 100vw;
     background-color: #134A2D;
-    color: #CBEAA6;
     padding: 4px;
 }
 
 nav {
+    background-color: #134A2D;
     width: 100vw;
     display: flex;
     margin: 0px;
@@ -22,17 +31,19 @@ nav {
     color: #94386E;
     background-color: #134A2D;
     display: flex;
+    justify-content: start;
     align-items: center;
     width: 50vw;
     padding: 3px;
 }
 
 .nav-right {
+    background-color: #134A2D;
     font-size: 1.5em;
-    width: 50vw;
-    display: flex;
     justify-content: flex-end;
     align-items: center;
+    flex-wrap: nowrap;
+    width: 50vw;
     margin: 0px;
 }
 
@@ -46,14 +57,6 @@ nav a:link {
 
 nav a:visited {
     color: #94386E;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    color: #3D0B37;
 }
 
 p {
