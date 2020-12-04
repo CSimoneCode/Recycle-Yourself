@@ -2,14 +2,38 @@
 {% block title %}Donor Info{% endblock %}
 
 {% block content %}
-
-<h1>Potential Donor Information</h1>
-<div class="recipient-posts">
-{{  }}
+<div class="info-container">
+    <div class="info-head">
+        <div class="logo">
+            <i class="fas fa-recycle"></i>
+        </div>
+        <div>
+            <h1>Potential Donor Information</h1>
+        </div>
+    </div>
 </div>
-<div class="recipient-info">
-    
+<div class="info-body">
+    <div class="info-posts">
+        <h3>Donor Posts</h3>
+        {% for post in posts %}
+        <ul>
+            <li><a href="{% url 'showPost' post.id %}">{{ post.title }} | {{ post.date }}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div class="info-content">
+        <h3>Donor Information</h3>
+        <p>Suspendisse neque sapien, consequat nec justo vitae, auctor efficitur quam. Sed non odio vel leo dictum gravida. Nulla nisi urna, luctus vel nibh id, auctor imperdiet lorem. Donec efficitur nibh nec erat posuere lobortis. Etiam tortor lectus, tincidunt ut enim consectetur, fringilla rutrum orci. Nulla id finibus mi, quis consequat orci. Integer sodales rutrum neque, eu gravida libero iaculis vel. Vivamus rhoncus turpis semper arcu sollicitudin, vitae ultricies massa gravida. Quisque in sapien ex. Maecenas sodales magna nulla, nec facilisis est lacinia at. Donec blandit nisl non ornare sodales. Phasellus et nunc et arcu pharetra venenatis. Curabitur tempus erat tellus, vitae rutrum ex hendrerit sit amet. Mauris eget rutrum nisl, vel viverra orci. Aenean eget hendrerit nulla.
+
+            Integer nunc enim, vehicula nec neque vel, viverra lacinia sem. Praesent tincidunt odio id nunc mollis, vitae viverra quam mollis. Curabitur elementum urna at sem congue venenatis. Nulla facilisi. Mauris bibendum facilisis urna, ac aliquet libero semper convallis. In vitae dictum purus. Vestibulum sodales, ipsum ut condimentum tincidunt, lectus leo scelerisque turpis, vel hendrerit ex dui quis lectus. Proin iaculis felis vitae nunc fermentum volutpat. Duis tincidunt sem at accumsan pulvinar. Aliquam maximus felis nec pellentesque pulvinar. Maecenas eget nisl augue. Suspendisse vitae ornare lacus. Fusce sapien nulla, rutrum non efficitur vel, ultricies suscipit eros. Fusce id ipsum at mi egestas lacinia.
+            
+            Nulla porttitor, nunc sit amet congue fermentum, ipsum tellus porttitor nisi, ac posuere nibh mauris at elit. Aliquam pretium nunc in tempus condimentum. Nullam dapibus massa nec lorem feugiat, eget tempus elit mattis. Quisque malesuada, magna quis ultricies feugiat, diam erat porta leo, id ullamcorper sem magna id purus. In vel felis quis lectus consequat tristique. Phasellus eu aliquam justo. Vivamus consequat aliquet ex. Cras rhoncus blandit dignissim. Vestibulum consectetur interdum aliquam. Vestibulum sit amet vulputate quam, vel fringilla sem. Donec ut tortor ut urna mollis rutrum et eu diam. Quisque orci sem, volutpat vel nulla vitae, viverra rutrum ligula. Praesent mollis augue mauris, a malesuada leo ultrices quis.
+            
+            Sed venenatis sagittis massa, eu fringilla urna pellentesque quis. Ut cursus eros eget bibendum elementum. In rutrum vel lorem eget cursus. Phasellus consectetur condimentum quam sit amet ultrices. Donec ultricies nisl elit, in faucibus ipsum rutrum a. Nulla a iaculis libero. Morbi dolor sem, maximus non velit in, placerat tempor sapien. Vivamus rhoncus nulla varius elit tincidunt aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus blandit neque eu ligula volutpat varius.</p>
+    </div>
+</div>
 </div>
 
-{% endblock %}
+
+{% endblock %}  
     

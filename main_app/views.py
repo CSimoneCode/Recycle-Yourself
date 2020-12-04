@@ -8,7 +8,9 @@ from django.http import HttpResponse
 
 # return HttpResponse('<h1>It works!<h1>')
 
-# --- STATIC PAGES
+#----------------------------------------------------------------------------------------------
+#           STATIC
+#----------------------------------------------------------------------------------------------
 def landing(request):
     return render(request, 'landing.html')
 
@@ -18,19 +20,29 @@ def about(request):
 
 
 def donorInfo(request):
-    return render(request, 'donorInfo.html')
+    profile = Profile.objects.filter(account_type='DN')
+    posts = Post.objects.select_related().filter(author__in=profile)
+    context = { 'posts': posts }
+    return render(request, 'donorInfo.html', context)
 
 
 def recipientInfo(request):
-    return render(request, 'recipientInfo.html')
+    profile = Profile.objects.filter(account_type='RC')
+    posts = Post.objects.select_related().filter(author__in=profile, public=True)
+    context = { 'posts': posts }
+    return render(request, 'recipientInfo.html', context)
 
 
-# --- PROFILE PAGES
+#----------------------------------------------------------------------------------------------
+#           PROFILES
+#----------------------------------------------------------------------------------------------
 def showProfile(request, user_id):
     profile = Profile.objects.get(user=user_id)
+    posts = Post.objects.filter(author=user_id)
 
     context = {
         'profile': profile,
+        'posts': posts,
         }
 
     return render(request, 'profile/show.html', context)
@@ -63,38 +75,61 @@ def addProfile(request):
         }
         return render(request, 'profile/add.html', context)
 
-# @login_required
-# def editProfile(request):
-#     error_message = ''
-#     if request.method == 'POST':
-#         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-#         if profile_form.is_valid():
-#             edited_profile = profile_form.save()
-#             return redirect('showProfile')
-#         else:
-#             error_message = 'Something went wrong - try again'
-#     else:
-#         profile_form = ProfileForm(instance=request.user.profile)
-#         context = {
-#             'profile_form': profile_form, 
-#             'error_message': error_message
-#         }
-#         return render(request, 'profile/edit.html', context)
+
+@login_required
+def myProfile(request):
+    profile = Profile.objects.get(user=request.user)
+    posts = Post.objects.filter(author=request.user.id)
+    context = {
+        'profile': profile,
+        'posts': posts,
+        }
+
+    return render(request, 'profile/show.html', context)
+
+
+@login_required
+def editProfile(request):
+    error_message = ''
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if profile_form.is_valid():
+            edited_profile = profile_form.save()
+            return redirect('showProfile')
+        else:
+            error_message = 'Something went wrong - try again'
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
+        context = {
+            'profile_form': profile_form, 
+            'error_message': error_message
+        }
+        return render(request, 'profile/edit.html', context)
 
 
 @login_required
 def deleteProfile(request):
     error_message = ''
     if request.method == 'POST':
-        Profile.objects.get(id=request.user.profile.id).delete()
+        Profile.objects.get(user=request.user).delete()
         return redirect('landing')
     else:
         error_message = 'Something went wrong - try again'
         return render(request, 'showProfile')
 
-# --- POST PAGES
-def showPost(request):
-    return HttpResponse('<h1>It works!<h1>')
+
+#----------------------------------------------------------------------------------------------
+#           POSTS
+#----------------------------------------------------------------------------------------------
+def showPost(request, post_id):
+    post = Post.objects.get(id=post_id)
+
+    context = {
+    'post': post,
+    }
+
+    return render(request, 'post/show.html', context)
+
 
 @login_required
 def addPost(request):
@@ -104,26 +139,43 @@ def addPost(request):
             new_post = post_form.save(commit=False)
             new_post.author_id = request.user.id
             new_post.save()
-            return redirect('showProfile', new_post.author_id)
-        else:
-            post_form = PostForm()
-            author = request.user
-            context = {
-                'post_form': post_form,
-                'author': author,
-            }
-            return render(request, 'post/add.html', context)
+            return redirect('showPost', new_post.id)
+    else:
+        post_form = PostForm()
+        author = request.user
+        context = {
+            'post_form': post_form,
+            'author': author,
+        }
+        return render(request, 'post/add.html', context)
+
 
 @login_required
-def editPost(request):
-    return HttpResponse('<h1>It works!<h1>')
+def deletePost(request, post_id):
+    Post.objects.get(id=post_id).delete()
+    return redirect('recipientInfo')
+
 
 @login_required
-def deletePost(request):
-    return HttpResponse('<h1>It works!<h1>')
+def editPost(request, post_id):
+    found_post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        post_form = PostForm(request.POST, instance=found_post)
+        if post_form.is_valid():
+            updated_post = post_form.save()
+            return redirect('showPost', updated_post.id)
+    else:
+        post_form = PostForm(instance=found_post)
+        context = {
+            'post': found_post,
+            'post_form': post_form
+        }
+        return render(request, 'post/edit.html', context)
 
 
-# --- AUTH 
+#----------------------------------------------------------------------------------------------
+#           AUTH
+#----------------------------------------------------------------------------------------------
 def signup(request):
     error_message = ''
     if request.method == 'POST':

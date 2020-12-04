@@ -23,14 +23,14 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.User.username
+        return self.user.username
 
 
 class Post(models.Model):
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     body = models.CharField(max_length=500)
-    date = models.DateField(blank=True)
+    date = models.DateField(auto_now_add=True)
     photo = models.ImageField(default='default.jpg', upload_to='post_pics', blank=True)
     public = models.BooleanField(default=False)
 

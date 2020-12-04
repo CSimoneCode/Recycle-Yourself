@@ -13,10 +13,13 @@ urlpatterns = [
     path('profile/index/', views.profileIndex, name='profileIndex'),
     path('profile/addProfile/', views.addProfile, name='addProfile'),
     path('profile/<int:user_id>/', views.showProfile, name='showProfile'),
+    path('profile/myProfile/', views.myProfile, name='myProfile'),
     # path('profile/<int:user_id>/edit', views.editProfile, name='editProfile'),
     # ----- POST
-    path('post/add', views.addPost, name='addPost'),
+    path('post/add/', views.addPost, name='addPost'),
     path('post/<int:post_id>/', views.showPost, name='showPost'),
+    path('post/<int:post_id>/edit', views.editPost, name='editPost'),
+    path('post/<int:post_id>/deletePost/', views.deletePost, name='deletePost'),
 
     # ----- AUTH
     path('registration/signup/', views.signup, name='signup')

@@ -3,11 +3,11 @@
 
 {% block content %}
 
-<div class="card-content">
+<div class="card-content form-cont">
     <span>Create Profile</span>
     <form action="{% url 'addProfile' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ profile_form.as_p }}
+        <table>{{ profile_form.as_table }}</table>
         <input class="btn" type="submit" value="Create Profile">
     </form>
 </div>

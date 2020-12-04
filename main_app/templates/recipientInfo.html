@@ -3,12 +3,36 @@
 
 {% block content %}
 
-<h1>Potential Recipient Information</h1>
-<div class="recipient-posts">
-
+<div class="info-container">
+    <div class="info-head">
+        <div class="logo">
+            <i class="fas fa-recycle"></i>
+        </div>
+        <div>
+            <h1>Potential Recipient Information</h1>
+        </div>
+    </div>
 </div>
-<div class="recipient-info">
-    
+<div class="info-body">
+    <div class="info-posts">
+        <h3>Recipient Posts</h3>
+        {% for post in posts %}
+        <ul>
+            <li><a href="{% url 'showPost' post.id %}">{{ post.title }} | {{ post.date }}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div class="info-content">
+        <h3>Recipient Information</h3>
+        <p>Morbi iaculis rhoncus libero et maximus. Nam non nunc tellus. Donec odio nulla, dapibus in tempus ultrices, tincidunt non felis. Sed viverra sapien sed sagittis blandit. Aliquam placerat interdum semper. Donec scelerisque venenatis ligula, eu hendrerit metus porta ac. Donec et fringilla sapien, eu rhoncus elit. Etiam rhoncus libero id dictum convallis. Nam sit amet mauris vitae ipsum pellentesque cursus non a elit. Nam euismod massa nec est blandit, ut tincidunt diam luctus. Nunc tristique augue at sem dictum sollicitudin. Donec porta nisl et efficitur pretium. Sed egestas in lacus et interdum.
+
+            Suspendisse porttitor euismod orci sit amet suscipit. Praesent nec lectus in ante euismod convallis. Suspendisse bibendum et nunc non facilisis. Sed dui turpis, vulputate vitae mauris sit amet, blandit finibus urna. Donec ut turpis vel nisl congue suscipit aliquet et leo. Suspendisse pulvinar id magna nec vestibulum. Maecenas urna tortor, tincidunt facilisis nisl non, condimentum pretium quam. Curabitur malesuada lorem et arcu elementum tempus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent quis nulla a nisi dapibus mattis. Ut venenatis felis eget posuere venenatis. Maecenas sit amet posuere libero, at luctus purus. Quisque rhoncus vitae orci in aliquam. Donec eleifend nec turpis pharetra auctor. Vivamus a est a purus ultrices finibus. Morbi sit amet tempus ex, eget pharetra purus.
+            
+            Nunc pulvinar aliquet ex ac venenatis. Cras vulputate lacus at dolor hendrerit, at egestas erat congue. Vivamus congue eu sapien cursus molestie. Cras dignissim turpis a euismod cursus. Cras finibus, velit quis semper mollis, velit sapien congue ante, non varius justo risus euismod tortor. In leo enim, posuere non leo elementum, tempus porttitor augue. Nam condimentum aliquet eros, id tempus tortor ornare eu. Etiam eget velit lorem. Praesent nunc ipsum, egestas et dolor et, porta lobortis tellus.
+            
+            Vestibulum vulputate sagittis maximus. Praesent cursus dignissim accumsan. Fusce posuere lectus consequat, pretium lorem nec, tempor magna. Aliquam sed libero dignissim, tempus leo at, finibus urna. Suspendisse aliquet eros eget leo malesuada commodo. Vivamus a consequat orci. Cras imperdiet orci quis enim efficitur ornare. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus malesuada pretium ornare. Ut id hendrerit eros. Duis quis dignissim metus. Sed sit amet imperdiet odio. Ut mollis, magna ut interdum tempor, dolor neque lacinia velit, id consequat felis velit nec enim. Quisque finibus, leo eu facilisis ultricies, sem lorem laoreet velit, ac tincidunt velit ex eu dolor.</p>
+    </div>
+</div>
 </div>
 
 {% endblock %}

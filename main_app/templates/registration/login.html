@@ -6,13 +6,13 @@
 <h1>Log In</h1>
 
 <div class="form-cont">
-    <form method="post" action="{% url 'login' %}">
+    <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        {{ form.as_p }}
+        <table>{{ form.as_table }}</table>
         <input id="" type="submit" class="btn" value="login">
         <input type="hidden" name="next" value="{{ next }}">
     </form>
 </div>
 
-{% endblock  %}
+{% endblock  %}     
     

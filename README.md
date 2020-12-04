@@ -10,14 +10,16 @@ Users will sign up with one of three account types:
 - Donor (someone open to being a living donor)
 - Champion (someone who is neither, but is helping someone they know to find a donor)
 
-The vision is to build what will function like a dating site, but for organ donation. Posts will be shareable and can follow the journey of the Recipient or Donor through the process, which can span from several months to several years. Users will also be able to search for people in their area and filter by their account type to find a donor or recipient they can connect with.
+The vision is to build a site to connect people open to being a living donor with people who need a life saving donation. Posts will be shareable and can follow the journey of the Recipient or Donor through the process, which can span from several months to several years. Users will also be able to search for people in their area and filter by their account type to find a donor or recipient they can connect with.
 
-I tracked my donation on Instagram and shared it, but it would have been nice to have a community of other donors to talk to. I'd love to build this out to foster that community in the future as well. 
+![Melissa & I](https://i.imgur.com/f0BvO2o.jpg)
+
+I tracked my donation on Instagram and shared it, but it would have been nice to have a community of other donors to talk to. I'd love to build this out to foster that community in the future as well.
 
 ## ERD & Wireframes:
 Potentially subject to change if stretch goals can be met.
 
-![Imgur](https://i.imgur.com/WNEwWEe.png)
+![ERD](https://i.imgur.com/WNEwWEe.png)
 ![Landing Page](https://i.imgur.com/AkdalJI.png)
 ![Landing - Sign Up](https://i.imgur.com/rHr60rx.png)
 ![Landing - Log In](https://i.imgur.com/y72S8VD.png)
@@ -64,7 +66,7 @@ Potentially subject to change if stretch goals can be met.
 - CSS
 - Django
 - PostgreSQL
-- Mapbox
+- Mapbox (stretch)
 - Heroku
 
 ## Credits/Resources:
