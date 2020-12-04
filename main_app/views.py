@@ -8,7 +8,9 @@ from django.http import HttpResponse
 
 # return HttpResponse('<h1>It works!<h1>')
 
-# --- STATIC PAGES
+#----------------------------------------------------------------------------------------------
+#           STATIC
+#----------------------------------------------------------------------------------------------
 def landing(request):
     return render(request, 'landing.html')
 
@@ -25,7 +27,9 @@ def recipientInfo(request):
     return render(request, 'recipientInfo.html')
 
 
-# --- PROFILE PAGES
+#----------------------------------------------------------------------------------------------
+#           PROFILES
+#----------------------------------------------------------------------------------------------
 def showProfile(request, user_id):
     profile = Profile.objects.get(user=user_id)
 
@@ -86,15 +90,19 @@ def addProfile(request):
 def deleteProfile(request):
     error_message = ''
     if request.method == 'POST':
-        Profile.objects.get(id=request.user.profile.id).delete()
+        Profile.objects.get(user=request.user).delete()
         return redirect('landing')
     else:
         error_message = 'Something went wrong - try again'
         return render(request, 'showProfile')
 
-# --- POST PAGES
-def showPost(request):
-    return HttpResponse('<h1>It works!<h1>')
+
+#----------------------------------------------------------------------------------------------
+#           POSTS
+#----------------------------------------------------------------------------------------------
+def showPost(request, post_id):
+    post = Post.objects.get(id=post_id)
+    return render(request, 'post/show.html', post.id)
 
 @login_required
 def addPost(request):
@@ -102,17 +110,17 @@ def addPost(request):
         post_form = PostForm(request.POST, request.FILES)
         if post_form.is_valid():
             new_post = post_form.save(commit=False)
-            new_post.author_id = request.user.id
+            profile_user = request.user
             new_post.save()
-            return redirect('showProfile', new_post.author_id)
-        else:
-            post_form = PostForm()
-            author = request.user
-            context = {
-                'post_form': post_form,
-                'author': author,
-            }
-            return render(request, 'post/add.html', context)
+            return render(request, 'showPost', new_post.id)
+    else:
+        post_form = PostForm()
+        author = request.user
+        context = {
+            'post_form': post_form,
+            'author': author,
+        }
+        return render(request, 'post/add.html', context)
 
 @login_required
 def editPost(request):
@@ -123,7 +131,9 @@ def deletePost(request):
     return HttpResponse('<h1>It works!<h1>')
 
 
-# --- AUTH 
+#----------------------------------------------------------------------------------------------
+#           AUTH
+#----------------------------------------------------------------------------------------------
 def signup(request):
     error_message = ''
     if request.method == 'POST':
