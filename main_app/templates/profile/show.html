@@ -4,11 +4,6 @@
 {% block content %}
 
 <div class="profile-info">
-    {% if profile.photo %}
-    <img src=" /profile_pics/{{ profile.photo }}/ " class="profile-photo" />
-    {% else %}
-    <img src="/static/images/user.png" class="profile-photo" />
-    {% endif %}
     <h3>Username: {{ profile.user }}</h3>
     <p>Location: {{ profile.location }}</p>
     <p>Bio: {{ profile.bio }}</p>
