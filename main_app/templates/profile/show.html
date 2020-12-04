@@ -5,7 +5,7 @@
 
 <div class="profile-info">
     {% if profile.photo %}
-    <img src=" /profile_pics/{{ profile.photo }} " class="profile-photo" />
+    <img src=" /profile_pics/{{ profile.photo }}/ " class="profile-photo" />
     {% else %}
     <img src="/static/images/user.png" class="profile-photo" />
     {% endif %}
@@ -13,7 +13,6 @@
     <p>Location: {{ profile.location }}</p>
     <p>Bio: {{ profile.bio }}</p>
     <p>Account Type: {{ profile.account_type }}</p>
-    <a href="{% url 'addPost' %}" class="btn">Create Post</a>
     <div class="user-posts">
         {% for post in posts %}
         <h4>{{ post.title }}</h4>
@@ -21,6 +20,9 @@
         <p>{{ post.body }}</p>
         {% endfor %}
     </div>
+    {% if profile.user == request.user %}
+    <a href="{% url 'addPost' %}" class="btn">Create Post</a>
+    {% endif %}
 </div>
 
 {% endblock %}

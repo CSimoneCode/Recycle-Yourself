@@ -9,7 +9,8 @@
 
 <div class="form-cont">
     <form method="post" action="{% url 'signup' %}">
-        {% csrf_token %} {{ form.as_p }}
+        {% csrf_token %} 
+        <table>{{ form.as_table }}</table>
         <input type="submit" class="btn" value="Sign Up" />
     </form>
 </div>

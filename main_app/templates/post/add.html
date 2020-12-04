@@ -8,7 +8,7 @@
 <div class="form-cont">
     <form method="post" action="{% url 'addPost' %}">
         {% csrf_token %}
-        {{ post_form.as_p }}
+        <table>{{ post_form.as_table }}</table>
         <input type="submit" class="btn" value="Create Post">
     </form>
 </div> 

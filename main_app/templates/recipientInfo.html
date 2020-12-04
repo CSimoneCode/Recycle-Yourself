@@ -3,17 +3,29 @@
 
 {% block content %}
 
-<h1>Potential Recipient Information</h1>
-<div class="recipient-posts">
-    <h3>Posts</h3>
-    {% for post in posts %}
-    <ul>
-        <li><a href=" url 'showPost' post.id ">{{ post.title }} | {{ post.date }}</a></li>
-    </ul>
-    {% endfor %}
+<div class="info-container">
+    <div class="info-head">
+        <div class="logo">
+            <i class="fas fa-recycle"></i>
+        </div>
+        <div>
+            <h1>Potential Recipient Information</h1>
+        </div>
+    </div>
 </div>
-<div class="recipient-info">
-    <h3>Information</h3>
+<div class="info-body">
+    <div class="info-posts">
+        <h3>Recipient Posts</h3>
+        {% for post in posts %}
+        <ul>
+            <li><a href="{% url 'showPost' post.id %}">{{ post.title }} | {{ post.date }}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div class="info-content">
+        <h3>Recipient Information</h3>
+    </div>
+</div>
 </div>
 
 {% endblock %}

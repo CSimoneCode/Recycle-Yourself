@@ -38,9 +38,11 @@ def recipientInfo(request):
 #----------------------------------------------------------------------------------------------
 def showProfile(request, user_id):
     profile = Profile.objects.get(user=user_id)
+    posts = Post.objects.filter(author=user_id)
 
     context = {
         'profile': profile,
+        'posts': posts,
         }
 
     return render(request, 'profile/show.html', context)
@@ -72,6 +74,18 @@ def addProfile(request):
             'error_message': error_message
         }
         return render(request, 'profile/add.html', context)
+
+
+@login_required
+def myProfile(request,):
+    profile = Profile.objects.get(user=request.user)
+    posts = Post.objects.filter(author=request.user.id)
+    context = {
+        'profile': profile,
+        'posts': posts,
+        }
+
+    return render(request, 'profile/show.html', context)
 
 
 @login_required
