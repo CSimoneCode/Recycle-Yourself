@@ -9,8 +9,8 @@
     </div>
     <p>By {{ post.author }} | {{ post.date }}</p>
     <p>{{ post.body }}</p>
-    {% if post.author == request.user %}
-    <button class="btn" href="{% url 'editPost' %}">Edit Post</button>
+    {% if post.author.id == request.user.id %}
+    <a href="{% url 'editPost' post.id %}" class="btn">Edit Post</a>
     {% endif %}
 </div>
 

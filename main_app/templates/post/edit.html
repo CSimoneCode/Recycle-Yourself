@@ -6,10 +6,10 @@
 <h1>Edit Post</h1>
 
 <div class="form-cont">
-    <form method="post" action="{% url 'editPost' %}">
+    <form method="post" action="{% url 'editPost' post.id %}">
         {% csrf_token %}
         <table>{{ post_form.as_table }}</table>
-        <input type="submit" class="btn" value="Create Post">
+        <input type="submit" class="btn" value="Edit Post">
     </form>
 </div> 
 
