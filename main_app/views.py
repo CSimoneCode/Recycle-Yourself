@@ -77,7 +77,7 @@ def addProfile(request):
 
 
 @login_required
-def myProfile(request,):
+def myProfile(request):
     profile = Profile.objects.get(user=request.user)
     posts = Post.objects.filter(author=request.user.id)
     context = {
@@ -151,6 +151,12 @@ def addPost(request):
 
 
 @login_required
+def deletePost(request, post_id):
+    Post.objects.get(id=post_id).delete()
+    return redirect('recipientInfo')
+
+
+@login_required
 def editPost(request, post_id):
     found_post = Post.objects.get(id=post_id)
     if request.method == 'POST':
@@ -165,11 +171,6 @@ def editPost(request, post_id):
             'post_form': post_form
         }
         return render(request, 'post/edit.html', context)
-
-
-@login_required
-def deletePost(request):
-    return HttpResponse('<h1>It works!<h1>')
 
 
 #----------------------------------------------------------------------------------------------

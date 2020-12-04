@@ -11,6 +11,7 @@
     <p>{{ post.body }}</p>
     {% if post.author.id == request.user.id %}
     <a href="{% url 'editPost' post.id %}" class="btn">Edit Post</a>
+    <a href="{% url 'deletePost' post.id %}" class="btn">Delete Post</a>
     {% endif %}
 </div>
 

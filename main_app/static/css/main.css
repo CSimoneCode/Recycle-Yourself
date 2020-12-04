@@ -83,7 +83,7 @@ header {
 }
 
 .info-posts {
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -92,7 +92,7 @@ header {
 }
 
 .info-content {
-    width: 50%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -139,6 +139,8 @@ p {
     background-color: #3D0B37;
     color: #CBEAA6;
     border-radius: 4px;
+    padding: 5px;
+    margin: 5px;
 }
 
     
