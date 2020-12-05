@@ -10,7 +10,7 @@
     <p>Account Type: {{ profile.account_type }}</p>
     <div class="user-posts">
         {% for post in posts %}
-        <h4>{{ post.title }}</h4>
+        <h4><a href="{% url 'showPost' post.id %}">{{ post.title }}</a></h4>
         <span>{{ post.author.user }} | {{ post.date }}</span>
         <p>{{ post.body }}</p>
         {% endfor %}
