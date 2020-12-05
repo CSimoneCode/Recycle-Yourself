@@ -21,7 +21,7 @@ def about(request):
 
 def donorInfo(request):
     profile = Profile.objects.filter(account_type='DN')
-    posts = Post.objects.select_related().filter(author__in=profile)
+    posts = Post.objects.select_related().filter(author__in=profile,  public=True)
     context = { 'posts': posts }
     return render(request, 'donorInfo.html', context)
 
@@ -38,11 +38,13 @@ def recipientInfo(request):
 #----------------------------------------------------------------------------------------------
 def showProfile(request, user_id):
     profile = Profile.objects.get(user=user_id)
+    user = Profile.objects.select_related().get(user=user_id)
     posts = Post.objects.filter(author=user_id)
 
     context = {
         'profile': profile,
         'posts': posts,
+        'user': user,
         }
 
     return render(request, 'profile/show.html', context)
