@@ -6,8 +6,6 @@ from .models import Profile, Post
 from .forms import ProfileForm, SignupForm, PostForm
 from django.http import HttpResponse
 
-# return HttpResponse('<h1>It works!<h1>')
-
 #----------------------------------------------------------------------------------------------
 #           STATIC
 #----------------------------------------------------------------------------------------------
